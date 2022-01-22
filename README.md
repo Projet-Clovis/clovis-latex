@@ -10,7 +10,7 @@ Source code :
 }
 
 \clovisDefinition{Clovis LaTeX}{
-    A \LaTeX package for creating Clovis study sheet-like documents.
+    A \LaTeX-package for creating Clovis study sheet-like documents.
 }
 ```
 

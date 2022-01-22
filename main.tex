@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+% -------------------- Packages --------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{fontawesome5}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Clovis LaTeX Package},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+
+\usepackage{bookmark}
+\hypersetup{hidelinks}
+
+\usepackage{xcolor}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{tikzpagenodes}
+\usetikzlibrary{calc}
+
+
+% -------------------- Colors --------------------
+\definecolor{definition}{HTML}{2f80ed}
+\definecolor{definition-bg}{HTML}{e0ecfd}
+
+\definecolor{danger-color}{HTML}{e6505f}
+\definecolor{danger-bg-color}{HTML}{fce5e7}
+
+
+% -------------------- Macros --------------------
+\mdfdefinestyle{definition-style}{%
+    innertopmargin=10px,
+    innerbottommargin=10px,
+    linecolor=definition,
+    backgroundcolor=definition-bg,
+    roundcorner=4px
+}
+\newmdenv[style=definition-style]{definition}
+
+\newcommand\testos[1]{clovis{\MakeUppercase #1}}
+
+\newcommand\clovisColorfulBlock[1]{
+    % #1 = danger (name)
+    % #2 = danger-color (color)
+    % #3 = danger-bg-color (background color)
+    \mdfdefinestyle{#1-style}{%
+        innertopmargin=10px,
+        innerbottommargin=10px,
+        linecolor=#1-color,
+        backgroundcolor=#1-bg-color,
+        roundcorner=4px
+    }
+    \newmdenv[style=#1-style]{#1}
+
+    
+    \expandafter\newcommand\csname clovis#1\endcsname[1]{
+        \begin{#1}
+        {\scriptsize \textcolor{#1-color}{\faIcon{exclamation-triangle} \textbf{ATTENTION}}}
+        \vspace{3px}
+        \\ ##1
+        \end{#1}
+    }
+}
+
+\clovisColorfulBlock{danger}
+
+\newcommand\clovisDefinition[2]{
+    \begin{definition}
+    { \scriptsize \textcolor{definition}{\faIcon{graduation-cap} \textbf{DÉFINITION}}}
+    \vspace{3px}
+    \\ \underline{\textbf{#1}}
+    \vspace{2.5px}
+    \\ #2
+    \end{definition}
+}
+
+
+
+
+% -------------------- Document --------------------
+\title{Clovis LaTeX Package}
+\author{}
+\date{2022}
+\begin{document}
+\normalsize
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+\clovisDefinition{Title}{Definition}
+
+\clovisDefinition{Title}{
+    Definition
+}
+
+\clovisdanger{
+    $5x+3$ is a math expression.
+}
+
+\clovisdanger{$$\left|  \begin{matrix} v_n \leqslant u_n \leqslant w_n \\ \\ \displaystyle\lim_{n\to +\infty}v_n=\lim_{n\to +\infty}w_n=\ell\end{matrix}  \right\}  \displaystyle\lim_{n\to +\infty}u_n=\ell$$}
+
+\clovisdanger{$$\begin{array}{|c|c|c|c|c|c|c|}\hline\lim_{n\to +\infty}u_n & L & L & L & +\infty & -\infty & +\infty \\ \hline \\\displaystyle\lim_{n\to +\infty}v_n & L' & +\infty & - \infty &+\infty & -\infty & -\infty \\\\ \hline \\\displaystyle\lim_{n\to +\infty}(u_n+v_n) & L+L' & +\infty & -\infty & +\infty &-\infty & {\text{F.I.}} \\\\\hline \end{array}$$}
+%
+\testos{danger}
+
+\end{document}

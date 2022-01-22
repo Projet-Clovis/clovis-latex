@@ -3,6 +3,11 @@ A LaTeX package for creating Clovis study sheet-like documents.
 
 ![Example of what can be achieved with this package](img/example1.png)
 
+It is based on the `mdframed` package.
+
+# Example Gallery
+![Danger & Definition](img/example1.png)
+
 Source code :
 ```tex
 \clovisDanger{
@@ -13,5 +18,3 @@ Source code :
     A \LaTeX-package for creating Clovis study sheet-like documents.
 }
 ```
-
-It is based on the `mdframed` package.

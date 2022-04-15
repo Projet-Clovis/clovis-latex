@@ -162,14 +162,20 @@ rightline=false,
 
     \expandafter\newcommand\csname clovis#2\endcsname[1]{
         \begin{#1}
-        {\scriptsize \textcolor{#1-color}{\faIcon{#3} \textbf{DANGER}}}
+        {\scriptsize \textcolor{#1-color}{\faIcon{#3} \textbf{\MakeUppercase{#1}}}}
         \vspace{3px}
         \\ ##1
         \end{#1}
     }
 }
 
+\clovisColorfulBlock{example}{Example}{graduation-cap}
+\clovisColorfulBlock{byheart}{Byheart}{graduation-cap}
 \clovisColorfulBlock{danger}{Danger}{exclamation-triangle}
+\clovisColorfulBlock{summary}{Summary}{graduation-cap}
+\clovisColorfulBlock{reminder}{Reminder}{graduation-cap}
+\clovisColorfulBlock{advice}{Advice}{graduation-cap}
+\clovisColorfulBlock{remark}{Remark}{graduation-cap}
 
 
 % -------------------- Document --------------------

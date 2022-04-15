@@ -1,12 +1,30 @@
 \documentclass{article}
-\usepackage[utf8]{inputenc}
+
 
 % -------------------- Packages --------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+
+
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{float}
+
+
+\usepackage{soul} % highlighting
+\usepackage{inconsolata} % monospace font
 \usepackage{fontawesome5}
+
+
+\usepackage{xcolor}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{tikzpagenodes}
+\usetikzlibrary{calc}
+
 
 \usepackage{hyperref}
 \hypersetup{
@@ -23,11 +41,6 @@
 \usepackage{bookmark}
 \hypersetup{hidelinks}
 
-\usepackage{xcolor}
-\usepackage[framemethod=tikz]{mdframed}
-\usepackage{tikzpagenodes}
-\usetikzlibrary{calc}
-
 
 % -------------------- Colors --------------------
 \definecolor{definition}{HTML}{2f80ed}
@@ -36,22 +49,79 @@
 \definecolor{danger-color}{HTML}{e6505f}
 \definecolor{danger-bg-color}{HTML}{fce5e7}
 
+\definecolor{code-bg-color}{HTML}{fcfcfc} % todo: temp color
+\definecolor{code-border-color}{HTML}{dadce0} % todo: temp color
+
+\definecolor{hl-yellow-color}{HTML}{fef3c7}
+
+
 
 % -------------------- Macros --------------------
+% highlight function
+\newcommand{\highlight}[2]{%
+    \begingroup
+    \sethlcolor{#1}%
+    \hl{#2}%
+    \endgroup
+}
+
+\newcommand{\hlYellow}[1]{%
+    \highlight{hl-yellow-color}{#1}%
+}
+
+
+
+% inlineCode (without border)
+\newcommand{\inlineCodeWithoutBorder}[1]{%
+    {\small\tt \highlight{code-bg-color}{#1}}%
+}
+
+
+% inlineCode (with border)
+\usepackage[most]{tcolorbox}
+\tcbset{
+    on line,
+    boxsep=2px,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    boxrule=0.5px,
+    colframe=code-border-color,
+    colback=code-bg-color,
+    highlight math style={enhanced},
+    breakable
+}
+
+\newcommand{\inlineCode}[1]{%
+    \tcbox{{\small\tt #1}}%
+}
+
+
+% -------------------- colorful-blocks --------------------
 \mdfdefinestyle{definition-style}{%
-    innertopmargin=10px,
-    innerbottommargin=10px,
-    linecolor=definition,
-    backgroundcolor=definition-bg,
-    roundcorner=4px
+innertopmargin=10px,
+innerbottommargin=10px,
+linecolor=definition,
+backgroundcolor=definition-bg,
+roundcorner=4px
 }
 \newmdenv[style=definition-style]{definition}
 
-\newcommand\testos[1]{clovis{\MakeUppercase #1}}
+\newcommand\clovisDefinition[2]{
+    \begin{definition}
+    { \scriptsize \textcolor{definition}{\faIcon{graduation-cap} \textbf{DEFINITION}}}
+    \vspace{3px}
+    \\ \underline{\textbf{#1}}
+    \vspace{2.5px}
+    \\ #2
+    \end{definition}
+}
 
-\newcommand\clovisColorfulBlock[1]{
+
+\newcommand\clovisColorfulBlock[2]{
     % #1 = danger (name)
-    % #2 = danger-color (color)
+    % #2 = Danger (color)
     % #3 = danger-bg-color (background color)
     \mdfdefinestyle{#1-style}{%
         innertopmargin=10px,
@@ -62,35 +132,28 @@
     }
     \newmdenv[style=#1-style]{#1}
 
-    
-    \expandafter\newcommand\csname clovis#1\endcsname[1]{
+
+    \expandafter\newcommand\csname clovis#2\endcsname[1]{
         \begin{#1}
-        {\scriptsize \textcolor{#1-color}{\faIcon{exclamation-triangle} \textbf{ATTENTION}}}
+        {\scriptsize \textcolor{#1-color}{\faIcon{exclamation-triangle} \textbf{DANGER}}}
         \vspace{3px}
         \\ ##1
         \end{#1}
     }
 }
 
-\clovisColorfulBlock{danger}
-
-\newcommand\clovisDefinition[2]{
-    \begin{definition}
-    { \scriptsize \textcolor{definition}{\faIcon{graduation-cap} \textbf{DÉFINITION}}}
-    \vspace{3px}
-    \\ \underline{\textbf{#1}}
-    \vspace{2.5px}
-    \\ #2
-    \end{definition}
-}
-
-
+\clovisColorfulBlock{danger}{Danger}
 
 
 % -------------------- Document --------------------
 \title{Clovis LaTeX Package}
-\author{}
+\author{The Clovis Team}
 \date{2022}
+
+% Table of contents for h4 %todo: improve support for h4 titles
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
 \begin{document}
 \normalsize
 \maketitle
@@ -106,14 +169,13 @@
     Definition
 }
 
-\clovisdanger{
+\clovisDanger{
     $5x+3$ is a math expression.
 }
 
-\clovisdanger{$$\left|  \begin{matrix} v_n \leqslant u_n \leqslant w_n \\ \\ \displaystyle\lim_{n\to +\infty}v_n=\lim_{n\to +\infty}w_n=\ell\end{matrix}  \right\}  \displaystyle\lim_{n\to +\infty}u_n=\ell$$}
+\clovisDanger{$$\left|  \begin{matrix} v_n \leqslant u_n \leqslant w_n \\ \\ \displaystyle\lim_{n\to +\infty}v_n=\lim_{n\to +\infty}w_n=\ell\end{matrix}  \right\}  \displaystyle\lim_{n\to +\infty}u_n=\ell$$}
 
-\clovisdanger{$$\begin{array}{|c|c|c|c|c|c|c|}\hline\lim_{n\to +\infty}u_n & L & L & L & +\infty & -\infty & +\infty \\ \hline \\\displaystyle\lim_{n\to +\infty}v_n & L' & +\infty & - \infty &+\infty & -\infty & -\infty \\\\ \hline \\\displaystyle\lim_{n\to +\infty}(u_n+v_n) & L+L' & +\infty & -\infty & +\infty &-\infty & {\text{F.I.}} \\\\\hline \end{array}$$}
+\clovisDanger{$$\begin{array}{|c|c|c|c|c|c|c|}\hline\lim_{n\to +\infty}u_n & L & L & L & +\infty & -\infty & +\infty \\ \hline \\\displaystyle\lim_{n\to +\infty}v_n & L' & +\infty & - \infty &+\infty & -\infty & -\infty \\\\ \hline \\\displaystyle\lim_{n\to +\infty}(u_n+v_n) & L+L' & +\infty & -\infty & +\infty &-\infty & {\text{F.I.}} \\\\\hline \end{array}$$}
 %
-\testos{danger}
 
 \end{document}

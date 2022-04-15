@@ -104,6 +104,7 @@ innertopmargin=10px,
 innerbottommargin=10px,
 linecolor=definition,
 backgroundcolor=definition-bg,
+%roundcorner=4px,
 linewidth=2px,
 topline=false,
 bottomline=false,
@@ -122,15 +123,16 @@ rightline=false,
 }
 
 
-\newcommand\clovisColorfulBlock[2]{
-    % #1 = danger (name)
-    % #2 = Danger (color)
-    % #3 = danger-bg-color (background color)
+\newcommand\clovisColorfulBlock[3]{
+    % #1 = colorful block name (danger)
+    % #2 = colorful block name, with the first letter in uppercase (Danger)
+    % #3 = icon name (exclamation-triangle)
     \mdfdefinestyle{#1-style}{%
         innertopmargin=10px,
         innerbottommargin=10px,
         linecolor=#1-color,
         backgroundcolor=#1-bg-color,
+        roundcorner=2px,
         linewidth=2px,
         topline=false,
         bottomline=false,
@@ -141,14 +143,14 @@ rightline=false,
 
     \expandafter\newcommand\csname clovis#2\endcsname[1]{
         \begin{#1}
-        {\scriptsize \textcolor{#1-color}{\faIcon{exclamation-triangle} \textbf{DANGER}}}
+        {\scriptsize \textcolor{#1-color}{\faIcon{#3} \textbf{DANGER}}}
         \vspace{3px}
         \\ ##1
         \end{#1}
     }
 }
 
-\clovisColorfulBlock{danger}{Danger}
+\clovisColorfulBlock{danger}{Danger}{exclamation-triangle}
 
 
 % -------------------- Document --------------------

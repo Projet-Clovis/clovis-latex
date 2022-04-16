@@ -17,6 +17,7 @@
 
 \usepackage{soul} % highlighting
 \usepackage{inconsolata} % monospace font
+\usepackage{minted}
 \usepackage{fontawesome5}
 
 
@@ -67,7 +68,7 @@
 \definecolor{remark-color}{HTML}{47c2bb}
 \definecolor{remark-bg-color}{HTML}{e3f5f4}
 
-\definecolor{code-bg-color}{HTML}{fcfcfc} % todo: temp color
+\definecolor{code-bg-color}{HTML}{f3f4f6} % todo: temp color
 \definecolor{code-border-color}{HTML}{dadce0} % todo: temp color
 
 \definecolor{hl-yellow-color}{HTML}{fef3c7}
@@ -115,6 +116,22 @@
     \tcbox{{\small\tt #1}}%
 }
 
+% minted background color
+\mdfdefinestyle{code-style}{%
+innertopmargin=10px,
+innerbottommargin=10px,
+linecolor=definition,
+backgroundcolor=definition-bg,
+linewidth=0px,
+}
+\newmdenv[style=code-style]{code}
+
+\newcommand\clovisCode[1]{
+    \begin{code}
+        #1
+    \end{code}
+}
+
 
 % -------------------- colorful-blocks --------------------
 \mdfdefinestyle{definition-style}{%
@@ -122,7 +139,6 @@ innertopmargin=10px,
 innerbottommargin=10px,
 linecolor=definition,
 backgroundcolor=definition-bg,
-%roundcorner=4px,
 linewidth=2px,
 topline=false,
 bottomline=false,
@@ -209,7 +225,36 @@ rightline=false,
 
 \clovisDanger{$\left|  \begin{matrix} v_n \leqslant u_n \leqslant w_n \\ \\ \displaystyle\lim_{n\to +\infty}v_n=\lim_{n\to +\infty}w_n=\ell\end{matrix}  \right\}  \displaystyle\lim_{n\to +\infty}u_n=\ell$}
 
+\clovisDanger{\(\left|  \begin{matrix} v_n \leqslant u_n \leqslant w_n \\ \\ \displaystyle\lim_{n\to +\infty}v_n=\lim_{n\to +\infty}w_n=\ell\end{matrix}  \right\}  \displaystyle\lim_{n\to +\infty}u_n=\ell\)}
+
+\clovisDanger{$$\left|  \begin{matrix} v_n \leqslant u_n \leqslant w_n \\ \\ \displaystyle\lim_{n\to +\infty}v_n=\lim_{n\to +\infty}w_n=\ell\end{matrix}  \right\}  \displaystyle\lim_{n\to +\infty}u_n=\ell$$}
+
+\clovisDanger{\[\left|  \begin{matrix} v_n \leqslant u_n \leqslant w_n \\ \\ \displaystyle\lim_{n\to +\infty}v_n=\lim_{n\to +\infty}w_n=\ell\end{matrix}  \right\}  \displaystyle\lim_{n\to +\infty}u_n=\ell\]}
+
 \clovisDanger{$\begin{array}{|c|c|c|c|c|c|c|}\hline\lim_{n\to +\infty}u_n & L & L & L & +\infty & -\infty & +\infty \\ \hline \\\displaystyle\lim_{n\to +\infty}v_n & L' & +\infty & - \infty &+\infty & -\infty & -\infty \\\\ \hline \\\displaystyle\lim_{n\to +\infty}(u_n+v_n) & L+L' & +\infty & -\infty & +\infty &-\infty & {\text{F.I.}} \\\\\hline \end{array}$}
 %
+
+\begin{minted}[
+bgcolor=code-bg-color,
+linenos
+]{java}
+// nom de classe = nom du fichier
+class HelloWorld {
+        public static void main(String[] args) {
+                System.out.println("Hello world");
+        }
+}
+\end{minted}
+
+\begin{mdframed}[backgroundcolor=code-bg-color, linewidth=0]
+    \begin{minted}[linenos, xleftmargin=12px]{java}
+// nom de classe = nom du fichier
+class HelloWorld {
+        public static void main(String[] args) {
+                System.out.println("Hello world");
+        }
+}
+    \end{minted}
+\end{mdframed}
 
 \end{document}

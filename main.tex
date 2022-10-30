@@ -14,6 +14,9 @@
 \usepackage{graphicx}
 \usepackage{float}
 
+\usepackage{array}
+\usepackage{vcell}
+
 
 \usepackage{soul} % highlighting
 \usepackage{inconsolata} % monospace font
@@ -31,7 +34,7 @@
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
-    filecolor=magenta,      
+    filecolor=magenta,
     urlcolor=cyan,
     pdftitle={Clovis LaTeX Package},
     pdfpagemode=FullScreen,
@@ -44,6 +47,11 @@
 
 
 % -------------------- Colors --------------------
+\definecolor{gray300}{HTML}{d1d5db}
+\definecolor{gray600}{HTML}{4b5563}
+\definecolor{gray700}{HTML}{374151}
+\definecolor{gray800}{HTML}{1f2937}
+
 \definecolor{definition}{HTML}{2f80ed}
 \definecolor{definition-bg}{HTML}{dfebfc}
 
@@ -161,7 +169,7 @@ rightline=false,
     % #1 = colorful block name (danger)
     % #2 = colorful block name, with the first letter in uppercase (Danger)
     % #3 = icon name (exclamation-triangle)
-    
+
     \mdfdefinestyle{#1-style}{%
         innertopmargin=10px,
         innerbottommargin=10px,
@@ -195,16 +203,54 @@ rightline=false,
 \clovisColorfulBlock{remark}{Remark}{graduation-cap}
 
 
+% -------------------- Quotes & Excerpts --------------------
+\mdfdefinestyle{quote-style}{%
+innertopmargin=6px,
+innerbottommargin=6px,
+innerleftmargin=2px,
+linecolor=gray300,
+backgroundcolor=white,
+linewidth=1px,
+topline=false,
+bottomline=false,
+rightline=false,
+}
+\newmdenv[style=quote-style]{clovis-quote}
+
+\newcommand\clovisQuote[4]{
+    \begin{clovis-quote}
+    \begin{tabular}{ c p{310px} }
+        {\large \textbf{``}} \hspace{-10px} & {\small \textbf{#1}} {\large \textbf{''}} \vspace{4px}\\
+        & - {\small \textcolor{gray700}{#2}} % \textsc{#2} can be nice (ONLY with serif font)
+        \notblank{#3}{
+            \notblank{#4}{
+                \vspace{1px}\\ & {\small \textcolor{gray700}{\textit{#3}, #4}}
+            }{
+                \vspace{1px}\\ & {\small \textcolor{gray700}{\textit{#3}}}
+            }
+        }{
+            \notblank{#4}{
+                {\hspace{-13px} \small \textcolor{gray700}{, #4}}
+            }{
+            }
+        }
+    \end{tabular}
+    \end{clovis-quote}
+}
+
+
 % -------------------- Document --------------------
 \title{Clovis LaTeX Package}
 \author{The Clovis Team}
 \date{2022}
+
 
 % Table of contents for h4 %todo: improve support for h4 titles
 \setcounter{tocdepth}{4}
 \setcounter{secnumdepth}{4}
 
 \begin{document}
+\color{gray800}
 \normalsize
 \maketitle
 
@@ -212,6 +258,13 @@ rightline=false,
 \newpage
 
 \section{Introduction}
+
+\clovisQuote{Salut tout le monde}{Anne}{Conversation Discord}{2021}
+\clovisQuote{Salut tout le monde}{Anne}{Conversation Discord}{}
+\clovisQuote{Salut tout le monde}{Anne}{}{2021}
+\clovisQuote{Salut tout le monde}{Anne}{}{}
+\clovisQuote{The word policy is commonly used to designate the most important choices made either in organised or private life. Policy is free of many of the undesirable connotations clustered around the word "political" which is often believed to imply partisanship or corruption.}{Harold Dwight Lasswell}{}{}
+\clovisQuote{The word policy is commonly used to designate the most important choices made either in organised or private life. Policy is free of many of the undesirable connotations clustered around the word "political" which is often believed to imply partisanship or corruption. The word policy is commonly used to designate the most important choices made either in organised or private life. Policy is free of many of the undesirable connotations clustered around the word "political" which is often believed to imply partisanship or corruption.}{Harold Dwight Lasswell}{}{}
 
 \clovisDefinition{Title}{Definition}
 

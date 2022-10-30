@@ -38,7 +38,7 @@
     urlcolor=cyan,
     pdftitle={Clovis LaTeX Package},
     pdfpagemode=FullScreen,
-    }
+}
 
 \urlstyle{same}
 
@@ -82,7 +82,6 @@
 \definecolor{hl-yellow-color}{HTML}{fef3c7}
 
 
-
 % -------------------- Macros --------------------
 % highlight function
 \newcommand{\highlight}[2]{%
@@ -97,10 +96,9 @@
 }
 
 
-
 % inlineCode (without border)
 \newcommand{\inlineCodeWithoutBorder}[1]{%
-    {\small\tt \highlight{code-bg-color}{#1}}%
+        {\small\tt \highlight{code-bg-color}{#1}}%
 }
 
 
@@ -126,11 +124,11 @@
 
 % minted background color
 \mdfdefinestyle{code-style}{%
-innertopmargin=10px,
-innerbottommargin=10px,
-linecolor=definition,
-backgroundcolor=definition-bg,
-linewidth=0px,
+    innertopmargin=10px,
+    innerbottommargin=10px,
+    linecolor=definition,
+    backgroundcolor=definition-bg,
+    linewidth=0px,
 }
 \newmdenv[style=code-style]{code}
 
@@ -143,32 +141,32 @@ linewidth=0px,
 
 % -------------------- colorful-blocks --------------------
 \mdfdefinestyle{definition-style}{%
-innertopmargin=10px,
-innerbottommargin=10px,
-linecolor=definition,
-backgroundcolor=definition-bg,
-linewidth=2px,
-topline=false,
-bottomline=false,
-rightline=false,
+    innertopmargin=10px,
+    innerbottommargin=10px,
+    linecolor=definition,
+    backgroundcolor=definition-bg,
+    linewidth=2px,
+    topline=false,
+    bottomline=false,
+    rightline=false,
 }
 \newmdenv[style=definition-style]{definition}
 
 \newcommand\clovisDefinition[2]{
     \begin{definition}
     { \scriptsize \textcolor{definition}{\faIcon{graduation-cap} \textbf{DEFINITION}}}
-    \vspace{3px}
-    \\ \underline{\textbf{#1}}
-    \vspace{2.5px}
-    \\ #2
+        \vspace{3px}
+        \\ \underline{\textbf{#1}}
+        \vspace{2.5px}
+        \\ #2
     \end{definition}
 }
 
 
 \newcommand\clovisColorfulBlock[3]{
-    % #1 = colorful block name (danger)
-    % #2 = colorful block name, with the first letter in uppercase (Danger)
-    % #3 = icon name (exclamation-triangle)
+% #1 = colorful block name (danger)
+% #2 = colorful block name, with the first letter in uppercase (Danger)
+% #3 = icon name (exclamation-triangle)
 
     \mdfdefinestyle{#1-style}{%
         innertopmargin=10px,
@@ -188,8 +186,8 @@ rightline=false,
     \expandafter\newcommand\csname clovis#2\endcsname[1]{
         \begin{#1}
         {\scriptsize \textcolor{#1-color}{\faIcon{#3} \textbf{\MakeUppercase{#1}}}}
-        \vspace{3px}
-        \\ ##1
+            \vspace{3px}
+            \\ ##1
         \end{#1}
     }
 }
@@ -205,36 +203,37 @@ rightline=false,
 
 % -------------------- Quotes & Excerpts --------------------
 \mdfdefinestyle{quote-style}{%
-innertopmargin=6px,
-innerbottommargin=6px,
-innerleftmargin=2px,
-linecolor=gray300,
-backgroundcolor=white,
-linewidth=1px,
-topline=false,
-bottomline=false,
-rightline=false,
+    innertopmargin=6px,
+    innerbottommargin=6px,
+    innerleftmargin=2px,
+    linecolor=gray300,
+    backgroundcolor=white,
+    linewidth=1px,
+    topline=false,
+    bottomline=false,
+    rightline=false,
 }
 \newmdenv[style=quote-style]{clovis-quote}
 
 \newcommand\clovisQuote[4]{
     \begin{clovis-quote}
-    \begin{tabular}{ c p{310px} }
-        {\large \textbf{``}} \hspace{-10px} & {\small \textbf{#1}} {\large \textbf{''}} \vspace{4px}\\
-        & - {\small \textcolor{gray700}{#2}} % \textsc{#2} can be nice (ONLY with serif font)
-        \notblank{#3}{
-            \notblank{#4}{
-                \vspace{1px}\\ & {\small \textcolor{gray700}{\textit{#3}, #4}}
+        \begin{tabular}{ c p{310px} }
+        {\large \textbf{``}}
+            \hspace{-10px} & {\small \textbf{#1}} {\large \textbf{''}} \vspace{4px} \\
+            & - {\small \textcolor{gray700}{#2}} % \textsc{#2} can be nice (ONLY with serif font)
+            \notblank{#3}{
+                \notblank{#4}{
+                    \vspace{1px} \\ & {\small \textcolor{gray700}{\textit{#3}, #4}}
+                }{
+                    \vspace{1px} \\ & {\small \textcolor{gray700}{\textit{#3}}}
+                }
             }{
-                \vspace{1px}\\ & {\small \textcolor{gray700}{\textit{#3}}}
+                \notblank{#4}{
+                        {\hspace{-13px} \small \textcolor{gray700}{, #4}}
+                }{
+                }
             }
-        }{
-            \notblank{#4}{
-                {\hspace{-13px} \small \textcolor{gray700}{, #4}}
-            }{
-            }
-        }
-    \end{tabular}
+        \end{tabular}
     \end{clovis-quote}
 }
 
@@ -250,57 +249,58 @@ rightline=false,
 \setcounter{secnumdepth}{4}
 
 \begin{document}
-\color{gray800}
-\normalsize
-\maketitle
+    \color{gray800}
+    \normalsize
+    \maketitle
 
-\tableofcontents
-\newpage
+    \tableofcontents
+    \newpage
 
-\section{Introduction}
 
-\clovisQuote{Salut tout le monde}{Anne}{Conversation Discord}{2021}
-\clovisQuote{Salut tout le monde}{Anne}{Conversation Discord}{}
-\clovisQuote{Salut tout le monde}{Anne}{}{2021}
-\clovisQuote{Salut tout le monde}{Anne}{}{}
-\clovisQuote{The word policy is commonly used to designate the most important choices made either in organised or private life. Policy is free of many of the undesirable connotations clustered around the word "political" which is often believed to imply partisanship or corruption.}{Harold Dwight Lasswell}{}{}
-\clovisQuote{The word policy is commonly used to designate the most important choices made either in organised or private life. Policy is free of many of the undesirable connotations clustered around the word "political" which is often believed to imply partisanship or corruption. The word policy is commonly used to designate the most important choices made either in organised or private life. Policy is free of many of the undesirable connotations clustered around the word "political" which is often believed to imply partisanship or corruption.}{Harold Dwight Lasswell}{}{}
+    \section{Introduction}
 
-\clovisDefinition{Title}{Definition}
+    \clovisQuote{Salut tout le monde}{Anne}{Conversation Discord}{2021}
+    \clovisQuote{Salut tout le monde}{Anne}{Conversation Discord}{}
+    \clovisQuote{Salut tout le monde}{Anne}{}{2021}
+    \clovisQuote{Salut tout le monde}{Anne}{}{}
+    \clovisQuote{The word policy is commonly used to designate the most important choices made either in organised or private life. Policy is free of many of the undesirable connotations clustered around the word "political" which is often believed to imply partisanship or corruption.}{Harold Dwight Lasswell}{}{}
+    \clovisQuote{The word policy is commonly used to designate the most important choices made either in organised or private life. Policy is free of many of the undesirable connotations clustered around the word "political" which is often believed to imply partisanship or corruption. The word policy is commonly used to designate the most important choices made either in organised or private life. Policy is free of many of the undesirable connotations clustered around the word "political" which is often believed to imply partisanship or corruption.}{Harold Dwight Lasswell}{}{}
 
-\clovisDefinition{Title}{
-    Definition
-}
+    \clovisDefinition{Title}{Definition}
 
-\clovisDanger{
-    $5x+3$ is a math expression.
-}
+    \clovisDefinition{Title}{
+        Definition
+    }
 
-\clovisDanger{$\left|  \begin{matrix} v_n \leqslant u_n \leqslant w_n \\ \\ \displaystyle\lim_{n\to +\infty}v_n=\lim_{n\to +\infty}w_n=\ell\end{matrix}  \right\}  \displaystyle\lim_{n\to +\infty}u_n=\ell$}
+    \clovisDanger{
+        $5x+3$ is a math expression.
+    }
 
-\clovisDanger{\(\left|  \begin{matrix} v_n \leqslant u_n \leqslant w_n \\ \\ \displaystyle\lim_{n\to +\infty}v_n=\lim_{n\to +\infty}w_n=\ell\end{matrix}  \right\}  \displaystyle\lim_{n\to +\infty}u_n=\ell\)}
+    \clovisDanger{$\left|  \begin{matrix}
+                               v_n \leqslant u_n \leqslant w_n \\ \\ \displaystyle\lim_{n\to +\infty}v_n=\lim_{n\to +\infty}w_n=\ell
+    \end{matrix}  \right\}  \displaystyle\lim_{n\to +\infty}u_n=\ell$}
 
-\clovisDanger{$$\left|  \begin{matrix} v_n \leqslant u_n \leqslant w_n \\ \\ \displaystyle\lim_{n\to +\infty}v_n=\lim_{n\to +\infty}w_n=\ell\end{matrix}  \right\}  \displaystyle\lim_{n\to +\infty}u_n=\ell$$}
+    \clovisDanger{\(\left|  \begin{matrix}
+                                v_n \leqslant u_n \leqslant w_n \\ \\ \displaystyle\lim_{n\to +\infty}v_n=\lim_{n\to +\infty}w_n=\ell
+    \end{matrix}  \right\}  \displaystyle\lim_{n\to +\infty}u_n=\ell\)}
 
-\clovisDanger{\[\left|  \begin{matrix} v_n \leqslant u_n \leqslant w_n \\ \\ \displaystyle\lim_{n\to +\infty}v_n=\lim_{n\to +\infty}w_n=\ell\end{matrix}  \right\}  \displaystyle\lim_{n\to +\infty}u_n=\ell\]}
+    \clovisDanger{$$\left|  \begin{matrix}
+                                v_n \leqslant u_n \leqslant w_n \\ \\ \displaystyle\lim_{n\to +\infty}v_n=\lim_{n\to +\infty}w_n=\ell
+    \end{matrix}  \right\}  \displaystyle\lim_{n\to +\infty}u_n=\ell$$}
 
-\clovisDanger{$\begin{array}{|c|c|c|c|c|c|c|}\hline\lim_{n\to +\infty}u_n & L & L & L & +\infty & -\infty & +\infty \\ \hline \\\displaystyle\lim_{n\to +\infty}v_n & L' & +\infty & - \infty &+\infty & -\infty & -\infty \\\\ \hline \\\displaystyle\lim_{n\to +\infty}(u_n+v_n) & L+L' & +\infty & -\infty & +\infty &-\infty & {\text{F.I.}} \\\\\hline \end{array}$}
+    \clovisDanger{\[\left|  \begin{matrix}
+                                v_n \leqslant u_n \leqslant w_n \\ \\ \displaystyle\lim_{n\to +\infty}v_n=\lim_{n\to +\infty}w_n=\ell
+    \end{matrix}  \right\}  \displaystyle\lim_{n\to +\infty}u_n=\ell\]}
+
+    \clovisDanger{$\begin{array}{|c|c|c|c|c|c|c|}
+                       \hline\lim_{n\to +\infty}u_n & L & L & L & +\infty & -\infty & +\infty \\ \hline \\\displaystyle\lim_{n\to +\infty}v_n & L' & +\infty & - \infty & +\infty & -\infty & -\infty \\\\ \hline \\\displaystyle\lim_{n\to +\infty}(u_n+v_n) & L+L' & +\infty & -\infty & +\infty & -\infty & {\text{F.I.}} \\\\\hline
+    \end{array}$}
 %
 
-\begin{minted}[
-bgcolor=code-bg-color,
-linenos
-]{java}
-// nom de classe = nom du fichier
-class HelloWorld {
-        public static void main(String[] args) {
-                System.out.println("Hello world");
-        }
-}
-\end{minted}
-
-\begin{mdframed}[backgroundcolor=code-bg-color, linewidth=0]
-    \begin{minted}[linenos, xleftmargin=12px]{java}
+    \begin{minted}[
+        bgcolor=code-bg-color,
+        linenos
+    ]{java}
 // nom de classe = nom du fichier
 class HelloWorld {
         public static void main(String[] args) {
@@ -308,6 +308,16 @@ class HelloWorld {
         }
 }
     \end{minted}
-\end{mdframed}
+
+    \begin{mdframed}[backgroundcolor=code-bg-color, linewidth=0]
+        \begin{minted}[linenos, xleftmargin=12px]{java}
+// nom de classe = nom du fichier
+class HelloWorld {
+        public static void main(String[] args) {
+                System.out.println("Hello world");
+        }
+}
+        \end{minted}
+    \end{mdframed}
 
 \end{document}

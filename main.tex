@@ -15,7 +15,7 @@
 \usepackage{float}
 
 \usepackage{array}
-\usepackage{arydshln}
+\usepackage{vcell}
 
 
 \usepackage{soulutf8} % highlighting
@@ -36,7 +36,7 @@
     linkcolor=blue,
     filecolor=magenta,
     urlcolor=cyan,
-    pdftitle={},
+    pdftitle={Clovis LaTeX Package},
     pdfpagemode=FullScreen,
 }
 
@@ -205,7 +205,8 @@
 \mdfdefinestyle{quote-style}{%
     innertopmargin=6px,
     innerbottommargin=6px,
-    innerleftmargin=2px,
+    innerleftmargin=21px,
+    innerrightmargin=12px,
     linecolor=gray300,
     backgroundcolor=white,
     linewidth=1px,
@@ -217,25 +218,22 @@
 
 \newcommand\clovisQuote[4]{
     \begin{clovis-quote}
-        \begin{tabular}{ c p{310px} }
-        {\large \textbf{``}}
-            \hspace{-10px} & {\small \textbf{#1}} {\large \textbf{''}} \vspace{4px} \\
-            \notblank{#2}{ & - {\small \textcolor{gray700}{#2}}}{} % \textsc{#2} can be nice (ONLY with serif font)
-            \notblank{#3}{
-                \notblank{#4}{
-                    \vspace{1px} \\ & {\small \textcolor{gray700}{\textit{#3}, #4}}
-                }{
-                    \vspace{1px} \\ & {\small \textcolor{gray700}{\textit{#3}}}
-                }
+
+        {\hspace{-10px}\large \textbf{``}}
+        {\small \textbf{#1}} {\large \textbf{''}} \vspace{4px} \\
+        \notblank{#2}{ - {\small \textcolor{gray700}{#2}}}{} % \textsc{#2} can be nice (ONLY with serif font)
+        \notblank{#3}{
+            \notblank{#4}{
+                \vspace{1px} \\ {\small \textcolor{gray700}{\textit{#3}, #4}}
             }{
-                \notblank{#4}{
-                        {\hspace{-13px} \small \textcolor{gray700}{, #4}}
-                }{
-                }
+                \vspace{1px} \\ {\small \textcolor{gray700}{\textit{#3}}}
             }
-        \end{tabular}
-        %{\textbf{``  #1  ''}}
-        %\vspace{4px}
+        }{
+            \notblank{#4}{
+                    {\hspace{-13px} \small \textcolor{gray700}{, #4}}
+            }{
+            }
+        }
     \end{clovis-quote}
 }
 

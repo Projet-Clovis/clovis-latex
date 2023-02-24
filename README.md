@@ -18,3 +18,15 @@ Source code :
     A \LaTeX-package for creating Clovis study sheet-like documents.
 }
 ```
+
+# Installation
+
+For TinyTex you need theses libraries:
+```bash
+tlmgr install lastpage soul inconsolata fontawesome5 minted mdframed zref-abspage zref needspace etoolbox tikz ifthen pgf tikzpagenodes ifoddpage bookmark tcolorbox environ tikzfill pdfcol listings listingsutf8
+```
+
+And you must have Pygments installed:
+```bash
+sudo apt-get install python3-pygments
+```
